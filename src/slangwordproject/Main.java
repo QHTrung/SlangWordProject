@@ -19,7 +19,7 @@ public class Main {
     public static SlangDictionary slangDictionary=SlangDictionary.getInstance();
     
     public static void showMenu() {
-        System.out.println("==========   SLANG WORD MENU   ==========");
+        System.out.println("\n==========   SLANG WORD MENU   ==========");
         System.out.println("1. Search by slang word.");
         System.out.println("2. Search by definition.");
         System.out.println("3. Show search history.");
@@ -49,10 +49,12 @@ public class Main {
                     slangDictionary.searchBySlangWord(slangWord);
                     break;
                 case 2:
-
+                    System.out.print("Enter definition to find:");
+                    String definition=sc.nextLine();
+                    slangDictionary.searchByDefinition(definition);
                     break;
                 case 3:
-
+                    
                     break;
                 case 11:
                     System.out.println("Exit!");

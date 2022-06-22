@@ -8,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +44,7 @@ public class SlangDictionary {
         }
         return instance;
     }
+
     // Ham doc file
     public void readFile() throws IOException {
         try {
@@ -64,10 +67,33 @@ public class SlangDictionary {
         }
 
     }
+
     // Ham tim kiem dinh nghia theo slang word
-    public void searchBySlangWord(String slangword){
-        List<String>result=slangHashMap.get(slangword.toUpperCase());
-        System.out.print("The definition of "+slangword+" is:");
+    public void searchBySlangWord(String slangword) {
+        List<String> result = slangHashMap.get(slangword.toUpperCase());
+        if (result == null) {
+            System.out.println("This word does not exist!");
+        } else {
+            System.out.print("The definition of " + slangword + " is:");
+        }
+
         System.out.println(result);
+    }
+
+    //Ham tim kiem slang word theo dinh nghia
+    public void searchByDefinition(String definition) {
+        List<String> result = new ArrayList<>();
+        for (String item : slangHashMap.keySet()) {
+            slangHashMap.get(item).forEach((value) -> {
+                if (value.toUpperCase().contains(definition.toUpperCase())) {
+                    result.add(item);
+                    return;
+                }
+            });
+        }
+        System.out.println("The slang word of " + definition + " is:");
+        for (String key : result) {
+            System.out.println(key + ":" + slangHashMap.get(key));
+        }
     }
 }
