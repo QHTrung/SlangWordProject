@@ -57,6 +57,19 @@ public class Main {
                     System.out.println("Search History:");
                     slangDictionary.displayHistory();
                     break;
+                case 6:
+                    System.out.print("Enter the slangword you want to delete:");
+                    String delslang=sc.nextLine();
+                    if(slangDictionary.checkExist(delslang)){
+                        System.out.print("Do you want to delete "+ delslang+"?(Y/N):");
+                        String cf=sc.nextLine();
+                        if(cf.toUpperCase().equals("Y")){
+                            slangDictionary.deleteSlangWord(delslang);
+                        }
+                    }else{
+                        System.out.println(delslang+" does not exit!");
+                    }
+                    break;
                 case 11:
                     System.out.println("Exit!");
                     System.exit(0);
