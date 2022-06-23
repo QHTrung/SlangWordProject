@@ -54,7 +54,8 @@ public class Main {
                     slangDictionary.searchByDefinition(definition);
                     break;
                 case 3:
-                    
+                    System.out.println("Search History:");
+                    slangDictionary.displayHistory();
                     break;
                 case 11:
                     System.out.println("Exit!");

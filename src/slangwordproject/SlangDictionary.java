@@ -5,8 +5,10 @@
 package slangwordproject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -23,14 +25,17 @@ import java.util.logging.Logger;
 public class SlangDictionary {
 
     private static String ORIGINAL_SLANG_FILE = "src/data/slang.txt";
+    private  static String SEARCH_HISTORY_FILE="src/data/history.txt";
     public static HashMap<String, List<String>> slangHashMap = new HashMap<>();// sử dụng HashMap dể lưu trữ data.
+    public static List<String> slangHistory=new ArrayList<String>();
     private static SlangDictionary instance;
-
+    
     private SlangDictionary() {
         try {
             readFile();
+            readHistoryFile();
         } catch (IOException ex) {
-            Logger.getLogger(SlangDictionary.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error!:" + ex.getMessage());
         }
     }
 
@@ -62,8 +67,7 @@ public class SlangDictionary {
             br.close();
             fr.close();
         } catch (FileNotFoundException ex) {
-            System.out.println("Error!:" + ex);
-            Logger.getLogger(SlangDictionary.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error!:" + ex.getMessage());
         }
 
     }
@@ -78,6 +82,8 @@ public class SlangDictionary {
         }
 
         System.out.println(result);
+        slangHistory.add(slangword);
+        saveHistoryFile();
     }
 
     //Ham tim kiem slang word theo dinh nghia
@@ -94,6 +100,41 @@ public class SlangDictionary {
         System.out.println("The slang word of " + definition + " is:");
         for (String key : result) {
             System.out.println(key + ":" + slangHashMap.get(key));
+        }
+        slangHistory.add(definition);
+        saveHistoryFile();
+    }
+    // Ham doc file lich su
+    public void readHistoryFile() throws IOException {
+        try {
+            FileReader fr=new FileReader(SEARCH_HISTORY_FILE);
+            BufferedReader br=new BufferedReader(fr);
+            String str;
+            while((str=br.readLine())!=null){
+                slangHistory.add(str);
+            }
+            br.close();
+            fr.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Error!:"+e.getMessage());
+        }
+        
+    }
+    // Ham luu tu da tra vao file lich su
+    public void saveHistoryFile() {
+        try {
+            FileWriter fw=new FileWriter(SEARCH_HISTORY_FILE);
+            for(String historyItem:slangHistory){
+                fw.write(historyItem+"\n");
+            }
+            fw.close();
+        } catch (IOException ex) {
+            System.out.println("Error!:"+ex.getMessage());
+        }
+    }
+    public void displayHistory(){
+        for(String historyItem:slangHistory){
+            System.out.println(historyItem);
         }
     }
 }
