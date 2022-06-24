@@ -64,6 +64,11 @@ public class Main {
                     String meaning=sc.nextLine();
                     slangDictionary.addSlangWord(slangword, meaning);
                     break;
+                case 5:
+                    System.out.print("Enter slang word to edit:");
+                    String editslang=sc.nextLine();
+                    slangDictionary.editSlangWord(editslang);
+                    break;
                 case 6:
                     System.out.print("Enter the slangword you want to delete:");
                     String delslang=sc.nextLine();

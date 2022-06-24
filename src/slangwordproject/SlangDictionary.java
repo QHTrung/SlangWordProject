@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -26,6 +27,7 @@ public class SlangDictionary {
     public static HashMap<String, List<String>> slangHashMap = new HashMap<>();// sử dụng HashMap dể lưu trữ data.
     public static List<String> slangHistory = new ArrayList<String>();
     private static SlangDictionary instance;
+    private static Scanner sc = new Scanner(System.in);
 
     private SlangDictionary() {
         try {
@@ -163,6 +165,46 @@ public class SlangDictionary {
             slangHashMap.put(slangword.toUpperCase(), definitions);
             saveSlangWord();
             System.out.println("Add slang word successfully!");
+        }
+    }
+
+    // Ham chinh sua definition 1 slang word
+    public void editSlangWord(String editslang) {
+        if (checkExist(editslang)) {
+            List<String> definitions = new ArrayList<>();
+            for (;;) {
+                System.out.println("Option");
+                System.out.println("A.Add more definitions.");
+                System.out.println("B.Replace definition");
+                System.out.print("Enter your choice:");
+                String option = sc.nextLine();
+                switch (option.toUpperCase()) {
+                    case "A":
+                        System.out.print("Enter new definitions of " + editslang + " to add:");
+                        String newdefinitions = sc.nextLine();
+                        definitions.add(newdefinitions);
+                        List<String> defintionList = slangHashMap.get(editslang.toUpperCase());
+                        for (String item : defintionList) {
+                            definitions.add(item);
+                        }
+                        slangHashMap.replace(editslang.toUpperCase(), definitions);
+                        saveSlangWord();
+                        System.out.println("Edit definition successfully");
+                        return;
+                    case "B":
+                        System.out.print("Enter new definition of " + editslang + " to replace:");
+                        String newdefinition = sc.nextLine();
+                        definitions.add(newdefinition);
+                        slangHashMap.replace(editslang.toUpperCase(), definitions);
+                        saveSlangWord();
+                        System.out.println("Edit definition successfully!");
+                        return;
+                    default:
+                        System.out.println("Wrong! Please choose again!");
+                }
+            }
+        } else {
+            System.out.println(editslang + " does not exist!");
         }
     }
 
