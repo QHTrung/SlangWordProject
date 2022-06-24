@@ -75,7 +75,7 @@ public class SlangDictionary {
         if (result == null) {
             System.out.println("This word does not exist!");
         } else {
-            System.out.print("The definition of " + slangword + " is:\n"+result);
+            System.out.print("The definition of " + slangword + " is:\n" + result);
         }
         slangHistory.add(slangword);
         saveHistoryFile();
@@ -92,9 +92,13 @@ public class SlangDictionary {
                 }
             });
         }
-        System.out.println("The slang word of " + definition + " is:");
-        for (String key : result) {
-            System.out.println(key + ":" + slangHashMap.get(key));
+        if (result.isEmpty()) {
+            System.out.println("The " + definition + " does not exist!");
+        } else {
+            System.out.println("The slang word of " + definition + " is:");
+            for (String key : result) {
+                System.out.println(key + ":" + slangHashMap.get(key));
+            }
         }
         slangHistory.add(definition);
         saveHistoryFile();
@@ -141,13 +145,27 @@ public class SlangDictionary {
     public boolean checkExist(String slangword) {
         return slangHashMap.containsKey(slangword.toUpperCase());
     }
+
     // Ham xoa 1 slang word
-    public void deleteSlangWord(String slangword){
+    public void deleteSlangWord(String slangword) {
         slangHashMap.remove(slangword.toUpperCase());
-        System.out.println("Delete slang word successfully!");
         saveSlangWord();
+        System.out.println("Delete slang word successfully!");
     }
-    
+
+    // Ham them 1 slang word
+    public void addSlangWord(String slangword, String definition) {
+        if (checkExist(slangword)) {
+            System.out.println("The " + slangword + " already exists so it can't be added!");
+        } else {
+            List<String> definitions = new ArrayList<>();
+            definitions.add(definition);
+            slangHashMap.put(slangword.toUpperCase(), definitions);
+            saveSlangWord();
+            System.out.println("Add slang word successfully!");
+        }
+    }
+
     // Ham luu file sau khi da them/xoa/sua slang word
     public static void saveSlangWord() {
         try {

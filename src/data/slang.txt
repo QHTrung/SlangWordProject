@@ -6869,6 +6869,7 @@ COMMY`Communist
 IDWT`I Don't Want To
 SATC`Sex And The City (TV show)
 GOSH`Exclamation of suprise or shock
+QHT`Quach Hai Trung
 SATA`Serial Advanced Technology Attachment
 TTYRS`Talk To You Real Soon
 CTHU`Crack The Hell Up

@@ -57,6 +57,13 @@ public class Main {
                     System.out.println("Search History:");
                     slangDictionary.displayHistory();
                     break;
+                case 4:
+                    System.out.print("Enter slang word to add:");
+                    String slangword=sc.nextLine();
+                    System.out.print("Enter definition of slang word:");
+                    String meaning=sc.nextLine();
+                    slangDictionary.addSlangWord(slangword, meaning);
+                    break;
                 case 6:
                     System.out.print("Enter the slangword you want to delete:");
                     String delslang=sc.nextLine();
