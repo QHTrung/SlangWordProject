@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -242,5 +244,16 @@ public class SlangDictionary {
             System.out.println("Error!:"+ex.getMessage());
         }
         
+    }
+    
+    //Ham random slang word
+    public void randomSlangWord(){
+        Set<String>keySet=slangHashMap.keySet();
+        List<String> keyList = new ArrayList<>(keySet);
+        int size = keyList.size();
+        int randIdx = new Random().nextInt(size);
+        String randomKey=keyList.get(randIdx);
+        List<String>randomDefinition=slangHashMap.get(randomKey);
+        System.out.println("On this day slang word is: "+randomKey+": "+randomDefinition);
     }
 }

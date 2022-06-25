@@ -86,6 +86,7 @@ public class Main {
                     slangDictionary.resetSlangWord();
                     break;
                 case 8:
+                    slangDictionary.randomSlangWord();
                     break;
                 case 11:
                     System.out.println("Exit!");
