@@ -1,5 +1,6 @@
 BBC`British Broadcasting Corporation
 BBB`Bugging Beyond Belief
+BBE`Babe
 GLOTR`Good Luck On The Rebuild
 TWSS`That's What She Said
 BBG`Best Be Going
@@ -1336,7 +1337,6 @@ C#`Microsoft programming language
 BC`Before Christ
 MUFC`Manchester United Football Club
 BD`Big Deal
-BE`elements|be egg
 BF`Boyfriend| Best Friend
 LOLZA`LOL
 BG`Bad Game| Baby Gangster

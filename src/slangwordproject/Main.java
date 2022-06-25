@@ -16,8 +16,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static Scanner sc = new Scanner(System.in);
-    public static SlangDictionary slangDictionary=SlangDictionary.getInstance();
-    
+    public static SlangDictionary slangDictionary = SlangDictionary.getInstance();
+
     public static void showMenu() {
         System.out.println("\n==========   SLANG WORD MENU   ==========");
         System.out.println("1. Search by slang word.");
@@ -36,21 +36,21 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         int choose;
-        for(;;) {
+        for (;;) {
             showMenu();
-            do {                
-            System.out.print("Enter your choice:");
-            choose = Integer.parseInt(sc.nextLine());
-            } while (choose<=0||choose>11);
+            do {
+                System.out.print("Enter your choice:");
+                choose = Integer.parseInt(sc.nextLine());
+            } while (choose <= 0 || choose > 11);
             switch (choose) {
                 case 1:
                     System.out.print("Enter slang word to find:");
-                    String slangWord=sc.nextLine();
+                    String slangWord = sc.nextLine();
                     slangDictionary.searchBySlangWord(slangWord);
                     break;
                 case 2:
                     System.out.print("Enter definition to find:");
-                    String definition=sc.nextLine();
+                    String definition = sc.nextLine();
                     slangDictionary.searchByDefinition(definition);
                     break;
                 case 3:
@@ -59,28 +59,33 @@ public class Main {
                     break;
                 case 4:
                     System.out.print("Enter slang word to add:");
-                    String slangword=sc.nextLine();
+                    String slangword = sc.nextLine();
                     System.out.print("Enter definition of slang word:");
-                    String meaning=sc.nextLine();
+                    String meaning = sc.nextLine();
                     slangDictionary.addSlangWord(slangword, meaning);
                     break;
                 case 5:
                     System.out.print("Enter slang word to edit:");
-                    String editslang=sc.nextLine();
+                    String editslang = sc.nextLine();
                     slangDictionary.editSlangWord(editslang);
                     break;
                 case 6:
                     System.out.print("Enter the slangword you want to delete:");
-                    String delslang=sc.nextLine();
-                    if(slangDictionary.checkExist(delslang)){
-                        System.out.print("Do you want to delete "+ delslang+"?(Y/N):");
-                        String cf=sc.nextLine();
-                        if(cf.toUpperCase().equals("Y")){
+                    String delslang = sc.nextLine();
+                    if (slangDictionary.checkExist(delslang)) {
+                        System.out.print("Do you want to delete " + delslang + "?(Y/N):");
+                        String cf = sc.nextLine();
+                        if (cf.toUpperCase().equals("Y")) {
                             slangDictionary.deleteSlangWord(delslang);
                         }
-                    }else{
-                        System.out.println(delslang+" does not exit!");
+                    } else {
+                        System.out.println(delslang + " does not exit!");
                     }
+                    break;
+                case 7:
+                    slangDictionary.resetSlangWord();
+                    break;
+                case 8:
                     break;
                 case 11:
                     System.out.println("Exit!");

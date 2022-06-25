@@ -14,6 +14,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,7 +33,7 @@ public class SlangDictionary {
 
     private SlangDictionary() {
         try {
-            readFile();
+            readFile(SLANG_FILE);
             readHistoryFile();
         } catch (IOException ex) {
             System.out.println("Error!:" + ex.getMessage());
@@ -50,9 +52,10 @@ public class SlangDictionary {
     }
 
     // Ham doc file
-    public void readFile() throws IOException {
+    public void readFile(String path) throws IOException {
         try {
-            FileReader fr = new FileReader(SLANG_FILE);
+            slangHashMap.clear();
+            FileReader fr = new FileReader(path);
             BufferedReader br = new BufferedReader(fr);
             String str;
             while ((str = br.readLine()) != null) {
@@ -227,5 +230,17 @@ public class SlangDictionary {
         } catch (IOException ex) {
             System.out.println("Error!: " + ex.getMessage());
         }
+    }
+    
+    //Ham reset lai danh sach slang word goc
+    public void resetSlangWord(){
+        try {
+            readFile(ORIGINAL_SLANG_FILE);
+            System.out.println("Reset list successfully!");
+            saveSlangWord();
+        } catch (IOException ex) {
+            System.out.println("Error!:"+ex.getMessage());
+        }
+        
     }
 }
