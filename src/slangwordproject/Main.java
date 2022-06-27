@@ -92,6 +92,10 @@ public class Main {
                     System.out.println("Quiz game to find the definition of slang word");
                     slangDictionary.quizGameToFindDefinition();
                     break;
+                case 10:
+                    System.out.println("Quiz game to find the slang word of definition");
+                    slangDictionary.quizGameToFindSlangWord();
+                    break;
                 case 11:
                     System.out.println("Exit!");
                     System.exit(0);
