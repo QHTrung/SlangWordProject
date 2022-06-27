@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -233,27 +234,89 @@ public class SlangDictionary {
             System.out.println("Error!: " + ex.getMessage());
         }
     }
-    
+
     //Ham reset lai danh sach slang word goc
-    public void resetSlangWord(){
+    public void resetSlangWord() {
         try {
             readFile(ORIGINAL_SLANG_FILE);
             System.out.println("Reset list successfully!");
             saveSlangWord();
         } catch (IOException ex) {
-            System.out.println("Error!:"+ex.getMessage());
+            System.out.println("Error!:" + ex.getMessage());
         }
-        
+
     }
-    
+
     //Ham random slang word
-    public void randomSlangWord(){
-        Set<String>keySet=slangHashMap.keySet();
+    public void randomSlangWord() {
+        Set<String> keySet = slangHashMap.keySet();
         List<String> keyList = new ArrayList<>(keySet);
         int size = keyList.size();
         int randIdx = new Random().nextInt(size);
-        String randomKey=keyList.get(randIdx);
-        List<String>randomDefinition=slangHashMap.get(randomKey);
-        System.out.println("On this day slang word is: "+randomKey+": "+randomDefinition);
+        String randomKey = keyList.get(randIdx);
+        List<String> randomDefinition = slangHashMap.get(randomKey);
+        System.out.println("On this day slang word is: " + randomKey + ": " + randomDefinition);
+    }
+
+    // Ham quiz game de tim definition cua slangword
+    public void quizGameToFindDefinition() {
+        List<String> slangwordList = new ArrayList<>();
+        List<String> definitionList = new ArrayList<>();
+        do {
+            // Random slang word
+            Set<String> keySet = slangHashMap.keySet();
+            List<String> keyList = new ArrayList<>(keySet);
+            int size = keyList.size();
+            int randIdx = new Random().nextInt(size);
+            String randomKey = keyList.get(randIdx);
+            if (!slangwordList.contains(randomKey)) {
+                slangwordList.add(randomKey);
+                String randomDefinition = slangHashMap.get(randomKey.toUpperCase()).get(0);
+                definitionList.add(randomDefinition);
+            }
+        } while (slangwordList.size() < 4);
+        Random rd = new Random();
+        int rdnum = rd.nextInt(4);
+        System.out.println("What is the definition of " + slangwordList.get(rdnum) + "?");
+        System.out.println("A. " + definitionList.get(0));
+        System.out.println("B. " + definitionList.get(1));
+        System.out.println("C. " + definitionList.get(2));
+        System.out.println("D. " + definitionList.get(3));
+        for (;;) {
+            System.out.print("Your answer is:");
+            String anser = sc.nextLine();
+            switch (anser.toUpperCase()) {
+                case "A":
+                    if (rdnum == 0) {
+                        System.out.println("Correct !!!");
+                    } else {
+                        System.out.println("Wrong! Answer is: " + definitionList.get(rdnum));
+                    }
+                    return;
+                case "B":
+                    if (rdnum == 1) {
+                        System.out.println("Correct !!!");
+                    } else {
+                        System.out.println("Wrong! Answer is: " + definitionList.get(rdnum));
+                    }
+                    return;
+                case "C":
+                    if (rdnum == 2) {
+                        System.out.println("Correct !!!");
+                    } else {
+                        System.out.println("Wrong! Answer is: " + definitionList.get(rdnum));
+                    }
+                    return;
+                case "D":
+                    if (rdnum == 3) {
+                        System.out.println("Correct !!!");
+                    } else {
+                        System.out.println("Wrong! Answer is: " + definitionList.get(rdnum));
+                    }
+                    return;
+                default:
+                    System.out.println("Wrong! Please choose again!");
+            }
+        }
     }
 }

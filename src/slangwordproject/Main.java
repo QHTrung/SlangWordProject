@@ -88,6 +88,10 @@ public class Main {
                 case 8:
                     slangDictionary.randomSlangWord();
                     break;
+                case 9:
+                    System.out.println("Quiz game to find the definition of slang word");
+                    slangDictionary.quizGameToFindDefinition();
+                    break;
                 case 11:
                     System.out.println("Exit!");
                     System.exit(0);
