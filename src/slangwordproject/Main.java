@@ -29,7 +29,7 @@ public class Main {
         System.out.println("7. Reset the original slang words list.");
         System.out.println("8. Random 1 slang word.");
         System.out.println("9. Quiz game to find the definition of slang word.");
-        System.out.println("10.Quiz game to find slangword by definition.");
+        System.out.println("10.Quiz game to find slang word by definition.");
         System.out.println("11. Exit.");
     }
 
