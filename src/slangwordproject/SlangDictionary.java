@@ -23,9 +23,9 @@ import java.util.Set;
  */
 public class SlangDictionary {
 
-    private static String ORIGINAL_SLANG_FILE = "src/data/slang_origin.txt";
-    private static String SLANG_FILE = "src/data/slang.txt";
-    private static String SEARCH_HISTORY_FILE = "src/data/history.txt";
+    private static String ORIGINAL_SLANG_FILE = "data/slang_origin.txt";
+    private static String SLANG_FILE = "data/slang.txt";
+    private static String SEARCH_HISTORY_FILE = "data/history.txt";
     public static HashMap<String, List<String>> slangHashMap = new HashMap<>();// sử dụng HashMap dể lưu trữ data.
     public static List<String> slangHistory = new ArrayList<String>();
     private static SlangDictionary instance;
